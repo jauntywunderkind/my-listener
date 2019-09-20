@@ -17,30 +17,17 @@ export class MyListenerListener extends HTMLElement{
 		return this.options
 	}
 	set options( options){
-		//const
-		//  attributes= ["capture, passive"],
-		//  had= attributes.map
-
-
-		const
-		  hadCapture= this.getAttribute( "capture")!== null,
-		  hadPassive= this.getAttribute( "passive")!== null
 		this.options= options
-
-		const
-		  haveCapture= options&& options.capture|| false,
-		  havePassive= options&& options.passive|| false
-
-		if( havePassive&& !hadPassive){
-			this.setAttribute( "passive", "")
-		}else if( !havePassive&& hadPassive){
-			this.removeAttribute( "passive")
-		}
-		if( haveCapture&& !hadCapture){
-			this.setAttribute( "capture", "")
-		}else if( !haveCapture&& hadCapture){
-			this.removeAttribute( "capture")
-		}
+		[ "capture", "passive"].forEach( attribute){
+			const
+			  had= this.getAttribute( attribute)!== null,
+			  have= options&& !!options[ attribute]
+			if( had&& !have){
+				this.removeAttribute( attribute)
+			}else if( !had&& have){
+				this.setAttribute( attribute, "")
+			}
+		})
 	}
 
 	constructor( type, handler, options){

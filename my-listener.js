@@ -8,7 +8,8 @@ export class MyListener extends HTMLElement{
 			mixinClass( this, MyListener)
 		}
 	}
-	addEventListener( type, handler){
+	addEventListener( type, handler, options){
+		const listener= new Listener( type, handle, options)
 		
 	}
 	removeEventListener( type, handler){
