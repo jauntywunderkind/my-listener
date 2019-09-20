@@ -37,6 +37,7 @@ export class MyListenerListener extends HTMLElement{
 		this.type= type
 		this.handler= handler
 		this.options= options
+		return this
 	}
 
 	removeListener(){
@@ -52,5 +53,5 @@ export class MyListenerListener extends HTMLElement{
 export default MyListenerListener
 
 export function register(){
-	window.customElements.define('my-listener', Listener);
+	customElements.define('my-listener', Listener)
 }
